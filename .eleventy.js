@@ -567,7 +567,7 @@ module.exports = function (eleventyConfig) {
 		// baseHref: eleventyConfig.pathPrefix,
 
 		// But you could use a full URL here too:
-		baseHref: "https://nickynicolson.github.io/obsidian-digital-garden/"
+		baseHref: "https://nickynicolson.github.io/obsidian-digital-garden/",
 
 		// Comma separated list of output file extensions to apply
 		// our transform to. Use `false` to opt-out of the transform.
