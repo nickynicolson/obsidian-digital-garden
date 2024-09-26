@@ -3,4 +3,4 @@
 ---
 
 
-You can read about some [[Projects\|Projects]]
+You can read about some [[Projects\|Projects]], if the link works
