@@ -33,6 +33,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Runs a set of commands using the runners shell
-      - name: Build
-        run: npm run deploy
+      ## Runs a set of commands using the runners shell
+      #- name: deploy
+      #  run: npm run deploy
+
+      - name: Deploy with gh-pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
