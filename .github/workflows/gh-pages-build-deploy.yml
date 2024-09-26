@@ -16,7 +16,6 @@ on:
 jobs:
   # Build job
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -32,9 +31,10 @@ jobs:
       - name: Build
         run: npm run build
 
-    - name: Upload GitHub Pages artifact
-      uses: actions/upload-pages-artifact@v3.0.1
-      path: dist
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: dist
 
   # Deploy job
   deploy:
