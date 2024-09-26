@@ -7,6 +7,7 @@ const tocPlugin = require("eleventy-plugin-nesting-toc");
 const { parse } = require("node-html-parser");
 const htmlMinifier = require("html-minifier-terser");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 const { headerToId, namedHeadingsFilter } = require("./src/helpers/utils");
 const {
@@ -561,6 +562,18 @@ module.exports = function (eleventyConfig) {
 
   userEleventySetup(eleventyConfig);
 
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
+		// The base URL: defaults to Path Prefix
+		// baseHref: eleventyConfig.pathPrefix,
+
+		// But you could use a full URL here too:
+		baseHref: "https://nickynicolson.github.io/obsidian-digital-garden/"
+
+		// Comma separated list of output file extensions to apply
+		// our transform to. Use `false` to opt-out of the transform.
+		extensions: "html",
+	});
+  
   return {
     dir: {
       input: "src/site",
