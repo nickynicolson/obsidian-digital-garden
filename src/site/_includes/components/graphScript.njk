@@ -32,9 +32,11 @@
         let currentNode = remaining[currentLink] || Object.values(remaining).find((v) => v.home);
         console.log(currentNode);
         delete remaining[currentNode.url];
+        console.log("Deleted " + currentNode.url + "from remaining");
         if (!currentNode.home) {
             let home = Object.values(remaining).find((v) => v.home);
             delete remaining[home.url];
+            console.log("Deleted " + home.url + "from remaining");
         }
         currentNode.current = true;
         let existing = {};
