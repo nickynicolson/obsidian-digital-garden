@@ -30,11 +30,11 @@ function extractLinks(content) {
   ];
 }
 
-function getGraph(data) {
+function getGraph(data, baseUrl = "/") {
   let nodes = {};
   let links = [];
   let stemURLs = {};
-  let homeAlias = "/";
+  let homeAlias = baseUrl;
   (data.collections.note || []).forEach((v, idx) => {
     let fpath = v.filePathStem.replace("/notes/", "");
     let parts = fpath.split("/");
@@ -45,7 +45,7 @@ function getGraph(data) {
     nodes[v.url] = {
       id: idx,
       title: v.data.title || v.fileSlug,
-      url: v.url,
+      url: baseUrl + v.url,
       group,
       home:
         v.data["dg-home"] ||
