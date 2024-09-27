@@ -5,11 +5,11 @@ function caselessCompare(a, b) {
   return a.toLowerCase() === b.toLowerCase();
 }
 
-function extractLinks(content) {
+function extractLinks(content, baseUrl="/") {
   return [
     ...(content.match(wikiLinkRegex) || []).map(
       (link) =>
-        link
+        baseUrl + link
           .slice(2, -2)
           .split("|")[0]
           .replace(/.(md|markdown)\s?$/i, "")
@@ -19,7 +19,7 @@ function extractLinks(content) {
     ),
     ...(content.match(internalLinkRegex) || []).map(
       (link) =>
-        link
+        baseUrl + link
           .slice(6, -1)
           .split("|")[0]
           .replace(/.(md|markdown)\s?$/i, "")
@@ -42,7 +42,7 @@ function getGraph(data, baseUrl = "/") {
     if (parts.length >= 3) {
       group = parts[parts.length - 2];
     }
-    nodes[v.url] = {
+    nodes[baseUrl + v.url] = {
       id: idx,
       title: v.data.title || v.fileSlug,
       url: baseUrl + v.url,
