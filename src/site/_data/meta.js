@@ -6,6 +6,10 @@ module.exports = async (data) => {
   if (baseUrl && !baseUrl.startsWith("http")) {
     baseUrl = "https://" + baseUrl;
   }
+  let basePath = "";
+  if (baseUrl.startsWith("https://")) {
+    basePath = "/" + baseUrl.replace("https://","").split("/")[1] + "/"
+  }
   let themeStyle = globSync("src/site/styles/_theme.*.css")[0] || "";
   if (themeStyle) {
     themeStyle = themeStyle.split("site")[1];
@@ -69,6 +73,7 @@ module.exports = async (data) => {
     siteName: process.env.SITE_NAME_HEADER || "Digital Garden",
     mainLanguage: process.env.SITE_MAIN_LANGUAGE || "en",
     siteBaseUrl: baseUrl,
+    siteBasePath: basePath,
     styleSettingsCss,
     buildDate: new Date(),
   };
