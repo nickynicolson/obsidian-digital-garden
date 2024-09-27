@@ -16,6 +16,7 @@ function extractLinks(content, baseUrl="/") {
           .replace("\\", "")
           .trim()
           .split("#")[0]
+          .toLowerCase()
     ),
     ...(content.match(internalLinkRegex) || []).map(
       (link) =>
@@ -26,6 +27,7 @@ function extractLinks(content, baseUrl="/") {
           .replace("\\", "")
           .trim()
           .split("#")[0]
+          .toLowerCase()
     ),
   ];
 }
@@ -51,7 +53,7 @@ function getGraph(data, baseUrl = "/") {
         v.data["dg-home"] ||
         (v.data.tags && v.data.tags.indexOf("gardenEntry") > -1) ||
         false,
-      outBound: extractLinks(v.template.frontMatter.content),
+      outBound: extractLinks(v.template.frontMatter.content, baseUrl),
       neighbors: new Set(),
       backLinks: new Set(),
       noteIcon: v.data.noteIcon || process.env.NOTE_ICON_DEFAULT,
