@@ -9,7 +9,7 @@ function extractLinks(content, baseUrl="/") {
   return [
     ...(content.match(wikiLinkRegex) || []).map(
       (link) =>
-        baseUrl + link
+        baseUrl + "/" + link
           .slice(2, -2)
           .split("|")[0]
           .replace(/.(md|markdown)\s?$/i, "")
@@ -20,7 +20,7 @@ function extractLinks(content, baseUrl="/") {
     ),
     ...(content.match(internalLinkRegex) || []).map(
       (link) =>
-        baseUrl + link
+        baseUrl + "/" + link
           .slice(6, -1)
           .split("|")[0]
           .replace(/.(md|markdown)\s?$/i, "")
