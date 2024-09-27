@@ -16,7 +16,7 @@ function extractLinks(content, baseUrl="/") {
           .replace("\\", "")
           .trim()
           .split("#")[0]
-          .toLowerCase()
+          .toLowerCase() + "/"
     ),
     ...(content.match(internalLinkRegex) || []).map(
       (link) =>
@@ -27,7 +27,7 @@ function extractLinks(content, baseUrl="/") {
           .replace("\\", "")
           .trim()
           .split("#")[0]
-          .toLowerCase()
+          .toLowerCase() + "/"
     ),
   ];
 }
